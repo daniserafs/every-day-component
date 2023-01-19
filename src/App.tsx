@@ -1,10 +1,7 @@
-
+import Button from "./components/button";
 
 function App() {
-
-  return (
-   <>hey soul sister</>
-  )
+  return <>hey soul sister</>;
 }
 
-export default App
+export default App;
