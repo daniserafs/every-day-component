@@ -1,9 +1,18 @@
-import * as S from './style.css'
+import { ChangeEvent } from "react";
+import "./styles.css";
 
-const Input = () => (
-    <div>
-        <h1>input</h1>
-    </div>
-)
+export type InputProps = {
+  label?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
-export default Input
+const Input = ({ label, onChange }: InputProps) => (
+  <div className="form-item">
+    <input className="form-input" type="text" onChange={onChange} required/>
+    <label className="form-label" htmlFor={label}>
+      {label}
+    </label>
+  </div>
+);
+
+export default Input;

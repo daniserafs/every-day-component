@@ -1,10 +1,14 @@
-import { Story, Meta} from '@storybook/react'
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Input from '.';
+import Input from ".";
 
 export default {
-    title: 'Example/Input',
-    component: Input
-} as Meta
+  title: "Example/Input",
+  args: {
+    label: "Name",
+    onChange: (e) => console.log(e.target.value)
+  },
+  component: Input,
+} as ComponentMeta<typeof Input>;
 
-export const Default: Story = (args) => <Input {...args} />
+export const Default: ComponentStory<typeof Input> = (args) => <Input {...args} />;
