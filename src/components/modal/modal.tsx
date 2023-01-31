@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import React from "react";
 import Button from "../button";
 import "./styles.css";
 
@@ -6,11 +8,36 @@ export type ModalContentProps = {
 };
 
 export const ModalContent = ({ onRequestClose }: ModalContentProps) => {
+
+    useEffect(() => {
+        function onKeyDown(event: {keyCode: number}){
+            if(event.keyCode === 27){
+                onRequestClose()
+            }
+        }
+
+        document.addEventListener('keydown', onKeyDown)
+
+        return () => {
+            document.removeEventListener('keydown', onKeyDown)
+        }
+    }, [])
+
+  const handleWithWindowClick = (e: React.MouseEvent<HTMLSpanElement>) => {
+    (e.target as HTMLSpanElement).id === "background" && onRequestClose();
+  };
+
   return (
-    <span className="background">
+    <span
+      className="background"
+      id="background"
+      onClick={handleWithWindowClick}
+    >
       <div className="content">
         <div className="close">
-          <span className="top" onClick={onRequestClose}>x</span>
+          <span className="top" onClick={onRequestClose}>
+            x
+          </span>
         </div>
         <h3 className="title">I'm danidinha modal</h3>
         <p>
