@@ -2,8 +2,8 @@ import { ChangeEvent } from "react";
 import "./styles.css";
 
 export type InputProps = {
-  label?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  label: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const Input = ({ label, onChange }: InputProps) => (
