@@ -37,6 +37,66 @@
 }
 
 .nav > #nav-check {
-    display: none;
+  display: none;
 }
 
+@media (max-width: 660px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-top: 10px;
+  }
+
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav > .nav-btn > label:hover,
+  .nav #nav-check:checked ~ .nav-btn > label {
+    cursor: pointer;
+  }
+
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: rgb(205, 200, 200);
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    left: 0px;
+  }
+
+  .nav > .nav-links > a {
+    display: block;
+    color: black;
+    width: 100%;
+
+  }
+
+  .nav > .nav-links > a:hover {
+    background: black;
+
+  }
+
+  .nav  > #nav-check:not(:checked) ~ .nav-links {
+    height: 0;
+
+  }
+  .nav  > #nav-check:checked ~ .nav-links {
+    height: calc(50vh - 50px);
+    overflow-y: auto;
+    
+  }
+}
