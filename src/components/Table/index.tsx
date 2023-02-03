@@ -24,7 +24,7 @@ const Table = ({ columns, rows }: TableProps) => (
       <thead>
         <tr>
           {columns.map((column) => (
-            <th key={column.id}>{column.name}</th>
+            <th className="th-item" key={column.id}>{column.name}</th>
           ))}
         </tr>
       </thead>
