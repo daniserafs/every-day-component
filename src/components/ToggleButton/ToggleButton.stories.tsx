@@ -5,7 +5,6 @@ import Toggle from ".";
 
 export default {
   title: "Example/Toggle",
-
   component: Toggle,
 };
 
