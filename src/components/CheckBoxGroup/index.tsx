@@ -14,27 +14,46 @@ export type CheckBoxProps = {
 };
 
 const CheckBox = ({ title, subtitle, options }: CheckBoxProps) => {
-  const [isChecked, setIsChecked] = useState("");
+  const [selected, setSelected] = useState<Options[]>([]);
+
+  const isChecked = (option: Options) => {
+  return selected.some((item) => item.value === option.value)
+  }
+  const handleSelect = (option: Options) => {
+    if(isChecked(option)){
+      setSelected(selected.filter((item) => item.value !== option.value))
+     
+    } else {
+      setSelected([...selected, option])
+    }
+    
+    
+  }
 
   
 
+  const handleSubmit = () => {
+    console.log(selected)
+  }
+
   return (
     <div className="container-checkbox">
-      <div className="header">
-        <div className="title">{title}</div>
-        <div className="subtitle">{subtitle}</div>
+      <div className="header-checkbox">
+        <div className="title-checkbox">{title}</div>
+        <div className="subtitle-checkbox">{subtitle}</div>
       </div>
 
-      <ul className="list">
+      <ul className="list-checkbox">
         {options.map((option) => (
-          <li>
-            <div className="option">
+          <li key={option.value}>
+            <div className="checkbox">
               <input
                 type="checkbox"
-                
+                checked={isChecked(option)}
                 id={option.value}
                 name={option.value}
                 value={option.value}
+                onChange={()=>handleSelect(option)}
                 
               />
               <label htmlFor={option.value}>{option.label}</label>
@@ -43,8 +62,8 @@ const CheckBox = ({ title, subtitle, options }: CheckBoxProps) => {
         ))}
       </ul>
 
-      <div className="action">
-        <Button label="Submit"  isLarge />
+      <div className="action-checkbox">
+        <Button label="Submit" onClick={handleSubmit} isLarge />
       </div>
     </div>
   );
