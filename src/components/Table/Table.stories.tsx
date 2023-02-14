@@ -9,7 +9,7 @@ const ToggleRow = () => {
 
   // called on every render
 
-  return <Toggle checked={check} onChange={() => setCheck((c) => !c)} />;
+  return <Toggle id="bbbbb" checked={check} onChange={() => setCheck((c) => !c)} />;
 };
 
 export default {
@@ -36,7 +36,7 @@ export default {
             const [check, setCheck] = useState(false);
             return (
               <Toggle
-                key="aaaa"
+                id="aaaa"
                 checked={check}
                 onChange={() => {
                   console.log("1");
@@ -60,7 +60,7 @@ export default {
             const [check, setCheck] = useState(false);
             return (
               <Toggle
-                key="bbbb"
+                id="bbbb"
                 checked={check}
                 onChange={() => {
                   console.log("2");
