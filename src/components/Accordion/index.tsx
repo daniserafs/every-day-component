@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { AccordionItems } from './AccordionItem'
 import './styles.css'
 
@@ -10,15 +11,34 @@ export type AccordionProps = {
   faqs: Faqs[]
 }
 
-const Accordion = ({ faqs }: AccordionProps) => (
-  <div className="container">
-    <h1 className="text"> danidinha </h1>
-    <ul>
-      {faqs.map((faq, index) => (
-        <AccordionItems faq={} active={true} onToggle={()=>{console.log("wowowo")}} />
-      ))}
-    </ul>
-  </div>
-)
+const Accordion = ({ faqs }: AccordionProps) => {
+  const [clicked, setClicked] = useState(0)
+
+  const handleToggle = (index: number) => {
+    if(clicked === index ){
+      return setClicked(0)
+    }
+
+    setClicked(index)
+  }
+
+  return (
+    <div className="container">
+      
+      <ul className='accordion'>
+        {faqs.map((faq, index) => (
+          <AccordionItems
+            onToggle={() => {
+              handleToggle(index)
+            }}
+            active={clicked === index }
+            key={index}
+            faq={faq}
+          />
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 export default Accordion
