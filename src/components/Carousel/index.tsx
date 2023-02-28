@@ -1,24 +1,63 @@
 import './styles.css'
 
+import { Slider } from './Slider'
+import { useState } from 'react'
 
 export type CarouselImgs = {
-    label: string
-    url: string
+  label?: string
+  url?: string
+  slide?: number
 }
 export type CarouselProps = {
-   imgs: CarouselImgs[]
+  images: CarouselImgs[]
 }
 
-const Carousel = ({imgs}: CarouselProps) => {
-    return (
-        <div className='img-container'>
-            <h1>Images</h1>
-            <img src={"https://images.unsplash.com/photo-1546190255-451a91afc548?ixlib=rb-1.2.1"} />
+const Carousel = ({ images }: CarouselProps) => {
+  console.log('Caroulsel', { images })
+  const [current, setCurrent] = useState(0)
+  const length = images.length
+
+  console.log('hmhm', length)
+  const nextSlide = () => {
+    setCurrent(current === length - 1 ? 0 : current + 1)
+  }
+
+  const prevSlide = () => {
+    setCurrent(current === 0 ? length - 1 : current - 1)
+  }
+
+  return (
+    <div>
+      <span className="prev-slide" onClick={prevSlide}>
+        Previous Slide
+      </span>
+     
+      <div>
+      {images.map(({ url, slide }) => {
+        return (
+          <div key={slide}>
             
-    
-        </div>
-    )
-}
+            <img src={url} alt="TO-DO"  style={{ width: 100, height: 100 }}/>
+          </div>
+        )
+      })} image
+      </div>
+      <span className="prev-slide" onClick={nextSlide}>
+        Next Slide
+      </span>
+      
+    </div>
+  )
 
+  return <Slider images={images.url} />
+
+  return (
+    <>
+      {images.map((image) => {
+        return <img src={image.url} style={{ width: 100, height: 100 }} />
+      })}
+    </>
+  )
+}
 
 export default Carousel
